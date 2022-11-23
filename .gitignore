@@ -127,3 +127,22 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# Custom
+.idea/
+.vscode/
+data/VOCdevkit/
+data/COCO/
+data/VOCdevkit
+data/COCO
+data/tcp/
+*.pth
+*.pkl
+config.ini
+env_run.sh
+run.sh
+.DS_Store
+output/
+tmp/
+extract_tcp_core_painting.py

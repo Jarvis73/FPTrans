@@ -1,0 +1,5 @@
+dataset: PASCAL
+backbone: DeiT-B/16-384
+vit_depth: 11
+epochs: 30
+pair_lossW: 0.02

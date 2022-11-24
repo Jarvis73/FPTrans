@@ -10,7 +10,7 @@ Please download the following datasets and pretrained models, and put them into 
 ### PASCAL-5i
 
 * Download [Training/Validation data (2G, tarball)](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/VOCtrainval_11-May-2012.tar), and extract `VOCtrainval_11-May-2012.tar` to `./data/`
-* Precompute cross-entropy weights
+* Precompute cross-entropy weights (only used for training)
   
   ```bash
   # Dry run to ensure the output path are correct.
@@ -30,11 +30,13 @@ Please download the following datasets and pretrained models, and put them into 
    python tools.py gen_coco_labels with sets=val2014
   ```
 
-* Precompute cross-entropy weights
+* Precompute cross-entropy weights (only used for training)
 
   ```bash
   cuda 0 python tools.py precompute_loss_weights with dataset=COCO save_byte=True
   ```
+
+## Dataset Structure
 
 Final directory structure (only display used directories and files):
 

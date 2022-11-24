@@ -1,0 +1,9 @@
+dataset: COCO
+backbone: ViT-B/16-384
+vit_depth: 10
+epochs: 60
+bs: 16
+train_n: 20000
+scale_min: 0.8
+scale_max: 1.25
+pair_lossW: 0.0001

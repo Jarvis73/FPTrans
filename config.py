@@ -63,14 +63,14 @@ def setup(ex):
 
         bs = 4                          # int, batch size
         test_bs = 1                     # int, test batch size (Don't change it!)
-        num_workers = min(bs, 4)        # int, PyTorch DataLoader argument
+        num_workers = min(bs, 16)       # int, PyTorch DataLoader argument
         train_n = 0                     # int, number of train examples in each epoch (for balancing dataset)
         test_n = 5000                   # int, number of test examples in each run
         test_range = (None, None)       # tuple, test range from ... to ...
         coco2pascal = False             # bool, flag for evaluating in domain shift scenario of coco -> pascal
 
         # Training configurations  ============================================================
-        epochs = 30                     # int, Number of total epochs for training
+        epochs = 60                     # int, Number of total epochs for training
         lr = 0.001                      # float, Base learning rate for model training
         lrp = "period_step"             # str, Learning rate policy [custom_step/period_step/plateau]
         if lrp == "custom_step":
@@ -124,7 +124,7 @@ def setup(ex):
         num_prompt = 12 * (1 + bg_num * shot)   # int, number of prompts
         pt_std = 0.02                   # float, standard deviation of initial prompt tokens (Gaussian)
 
-        # Structure of a single episode
+        # Structure of a single episode used in `predict` command
         p = {
             "cls": -1,                  # int, image class, specify the used index in the support mask
             "sup": "",                  # str, support image stem, only for predefined datasets
@@ -137,31 +137,6 @@ def setup(ex):
             "overlap": True,            # bool, overlap the predicted mask on the query image
         }
         save_dir = None
-
-        test_start = 1  # only for debug
-
-    @ex.named_config
-    def debug():
-        bs = 4
-        train_n = 10 * bs
-        test_n = 10
-        epochs = 3
-
-    @ex.named_config
-    def deit():
-        backbone = 'DeiT-B/16-384'
-        vit_depth = 11
-
-    @ex.named_config
-    def coco():
-        dataset = "COCO"
-        bs = 16
-        num_workers = min(bs, 16)
-        train_n = 20000
-        scale_min = 0.8
-        scale_max = 1.25
-        epochs = 90
-        pair_lossW = 0.0001
 
     ex.add_source_file("networks/__init__.py")
 

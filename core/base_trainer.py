@@ -127,9 +127,6 @@ class BaseEvaluator(object):
             gen = tqdm(gen, leave=True)
         data_timer.tic()
         for i, batch in enumerate(gen, start=1):
-            # TODO: remove
-            if i < self.opt.test_start:
-                continue
             data_timer.toc()
             with timer.start():
                 qry_pred, losses = self.test_step(batch, i)

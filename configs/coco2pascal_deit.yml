@@ -1,0 +1,4 @@
+dataset: PASCAL
+backbone: DeiT-B/16-384
+vit_depth: 12
+coco2pascal: true

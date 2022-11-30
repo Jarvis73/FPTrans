@@ -56,8 +56,8 @@ and put the pretrained models (the numbered folders) into `./output/`.
 |           | ViT-B/16  | 5-shot |            17,18,19,20            |
 |           | DeiT-B/16 | 5-shot |            21,22,23,24            |
 | COCO-20i  | ViT-B/16  | 1-shot |            25,26,27,28            |
-|           | DeiT-B/16 | 5-shot |            29,30,31,32            |
-|           | ViT-B/16  | 1-shot |            33,34,35,36            |
+|           | DeiT-B/16 | 1-shot |            29,30,31,32            |
+|           | ViT-B/16  | 5-shot |            33,34,35,36            |
 |           | DeiT-B/16 | 5-shot |            37,38,39,40            |
 
 Run the `test` command:
@@ -68,6 +68,12 @@ cuda 0 python run.py test with configs/pascal_vit.yml exp_id=1 split=0
 
 # PASCAL ViT 5shot
 cuda 0 python run.py test with configs/pascal_vit.yml exp_id=17 split=0 shot=5
+
+# COCO to PASCAL 1shot (cross domain, no need for training, just test)
+# Load model trained from COCO, test on PASCAL 
+# Notice: the code will use different splits from PASCAL-5i to avoid test 
+#         classes (PASCAL) existed in training datasets (COCO).
+cuda 0 python run.py test with configs/coco2pascal_vit.yml exp_id=29 split=0
 ```
 
 ### Usage for training from scratch

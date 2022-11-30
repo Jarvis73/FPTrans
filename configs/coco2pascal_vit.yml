@@ -1,0 +1,4 @@
+dataset: PASCAL
+backbone: ViT-B/16-384
+vit_depth: 10
+coco2pascal: true

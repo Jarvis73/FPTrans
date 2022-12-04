@@ -7,6 +7,27 @@ Please download the following datasets and pretrained models, and put them into 
 * [x] PASCAL-5i
 * [x] COCO-20i
 
+## Dataset Structure
+
+Final directory structure (only display used directories and files):
+
+```
+./data
+├── COCO
+│   ├── annotations
+│   ├── train2014
+│   ├── train2014_labels
+│   ├── val2014
+│   ├── val2014_labels
+│   └── weights
+├── VOCdevkit
+│   └── VOC2012
+│       ├── SegmentationClassAug
+│       ├── JPEGImages
+│       └── weights
+└── README.md
+```
+
 ### PASCAL-5i
 
 * Download [Training/Validation data (2G, tarball)](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/VOCtrainval_11-May-2012.tar), and extract `VOCtrainval_11-May-2012.tar` to `./data/`
@@ -40,24 +61,3 @@ Please download the following datasets and pretrained models, and put them into 
     ```bash
     cuda 0 python tools.py precompute_loss_weights with dataset=COCO save_byte=True
     ```
-
-## Dataset Structure
-
-Final directory structure (only display used directories and files):
-
-```
-./data
-├── COCO
-│   ├── annotations
-│   ├── train2014
-│   ├── train2014_labels
-│   ├── val2014
-│   ├── val2014_labels
-│   └── weights
-├── VOCdevkit
-│   └── VOC2012
-│       ├── SegmentationClassAug
-│       ├── JPEGImages
-│       └── weights
-└── README.md
-```

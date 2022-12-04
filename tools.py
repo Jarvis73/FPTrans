@@ -9,7 +9,6 @@ from scipy.ndimage import distance_transform_edt
 import cv2
 
 from config import MapConfig
-from constants import project_dir
 from data_kits.datasets import DATA_DIR, DATA_LIST
 from utils_.misc import load_image
 
@@ -23,6 +22,7 @@ def config():
     sigma = 5
     save_byte = False       # save weights in uint8 format for saving space (especially for COCO)
     weights_save_dir = DATA_DIR[dataset] / "weights"
+    dry_run = False
 
 
 def boundary2weight(target, cls, kernel, sigma=5):

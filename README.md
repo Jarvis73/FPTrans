@@ -44,7 +44,7 @@ See [Preparing Datasets and Pretrained Backbones for FPTrans](./data/README.md)
 
 ### Usage for inference with our pretrained models
 
-Download the checkpoints of our pretrained FPTrans from [GoogleDrive](https://drive.google.com/drive/folders/1leK51aSPhw7kTJzwCY1ApcMJ5JG9K2Mv?usp=share_link) or [Baidu](https://pan.baidu.com/s/1v4PJJAe4EG1OwFnliAHEyQ) (Code: FPTr),
+Download the checkpoints of our pretrained FPTrans from [GoogleDrive](https://drive.google.com/drive/folders/1leK51aSPhw7kTJzwCY1ApcMJ5JG9K2Mv?usp=share_link) or [BaiduDrive](https://pan.baidu.com/s/1v4PJJAe4EG1OwFnliAHEyQ) (Code: FPTr),
 and put the pretrained models (the numbered folders) into `./output/`.
 
 | Datasets  | Backbone  | #Shots | Experiment ID (Split 0 - Split 3) |

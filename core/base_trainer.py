@@ -262,9 +262,6 @@ class BaseTrainer(object):
     def print_lr(self):
         for i, group in enumerate(self.optimizer.param_groups):
             self.logger.info(f"Learning rate for {self.opt.optim.upper()} param_group[{i}] is {group['lr']:.6g}")
-        if hasattr(self, 'Toptimizer'):
-            for i, group in enumerate(self.Toptimizer.param_groups):
-                self.logger.info(f"Learning rate for {self.opt.Toptim.upper()} param_group[{i}] is {group['lr']:.6g}")
 
     def start_training_loop(self, start_epoch, evaluator, num_classes):
         timer = Timer()
@@ -366,8 +363,6 @@ class BaseTrainer(object):
                 'optimizer_state': self.optimizer.state_dict(),
                 'scheduler_state': self.scheduler.state_dict(),
             })
-            if hasattr(self, 'Toptimizer'):
-                state['Toptimizer_state'] = self.Toptimizer.state_dict()
 
             try:
                 on_cloud_save_path = self.cloud_save_dir / "ckpt.pth"

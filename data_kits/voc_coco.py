@@ -24,9 +24,12 @@ def make_dataset(split=0, data_root=None, data_list=None, sub_list=None, coco2pa
 
     filepath = data_list.parent / f"{data_list.stem}_{split}{'_coco2pascal' if coco2pascal else ''}.pkl"
     if filepath.exists():
+        # Try to load `image_label_list` and `sub_class_file_list` from cache
         with filepath.open("rb") as f:
             image_label_list, sub_class_file_list = pickle.load(f)
-        return image_label_list, sub_class_file_list
+        if len(image_label_list) > 0:
+            return image_label_list, sub_class_file_list
+        # Load failed. Regenerate.
 
     # Shaban uses these lines to remove small objects:
     # if util.change_coordinates(mask, 32.0, 0.0).sum() > 2:
@@ -82,7 +85,7 @@ def make_dataset(split=0, data_root=None, data_list=None, sub_list=None, coco2pa
     with filepath.open("wb") as f:
         pickle.dump((image_label_list, sub_class_file_list), f)
 
-    print("Checking image&label pair {} list done! ".format(split))
+    print(f"Checking image&label list done! There are {len(image_label_list)} images in split {split}.")
     return image_label_list, sub_class_file_list
 
 
@@ -174,6 +177,8 @@ class SemData(Dataset):
                 split, self.data_root, data_list, self.sub_val_list, opt.coco2pascal)
 
         self.length_data_list = len(self.data_list)
+        assert self.length_data_list > 0, 'Length of data list is 0. Please make sure the data root ' \
+                                          f'({self.data_root}) and data list ({data_list}) are correct.'
         self.length_sub_class_list = {k: len(v) for k, v in self.sub_cls_files.items()}
 
         self.reset_sampler()

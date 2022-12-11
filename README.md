@@ -19,7 +19,7 @@ conda install numpy=1.21.2
 conda install pytorch==1.10.0 torchvision==0.11.1 cudatoolkit=11.3 -c pytorch
 conda install tqdm scipy pyyaml
 pip install git+https://github.com/IDSIA/sacred.git@0.8.3
-pip install dropblock pycocotools python-opencv
+pip install dropblock pycocotools opencv-python
 ```
 
 Put following bash function in `~/.bashrc` for simplifying the `CUDA_VISIBLE_DEVICES`. 

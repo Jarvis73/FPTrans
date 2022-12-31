@@ -279,7 +279,7 @@ class VisionTransformer(nn.Module):
                 ncls = 60
             divider = 1 + opt.bg_num * opt.shot
             self.prompt_tokens = nn.Parameter(
-                torch.zeros(ncls * divider, opt.num_prompt // divider, embed_dim))
+                torch.zeros(ncls * divider, opt.num_prompt // divider, embed_dim))  # [bank_size, G, embed_dim]
             nn.init.normal_(self.prompt_tokens.permute(2, 0, 1), std=opt.pt_std)
             self.sampler = np.random.RandomState(1234)
 
@@ -369,15 +369,15 @@ class VisionTransformer(nn.Module):
         # fg_token: [B, 1, C]
         # bg_token: [B, k, C]
         x, (fg_token, bg_token) = x
-        bank_size, psize, embed_dim = self.prompt_tokens.shape
+        bank_size, G, embed_dim = self.prompt_tokens.shape
         B = x.shape[0] // (1 + self.opt.shot)
         divider = 1 + self.opt.bg_num * self.opt.shot
         prompts = self.prompt_tokens[self.sampler.choice(bank_size, size=B * divider, replace=False)] \
-            .reshape(B, divider * psize, embed_dim)    # [B, 2*psize, embed_dim]
+            .reshape(B, divider * G, embed_dim)    # [B, (1+bg_num*shot)*G, embed_dim]
         tokens = {
-            'fg': prompts[:, :psize] + fg_token,
-            'bg': prompts[:, psize:] + bg_token.unsqueeze(2).expand(-1, -1, psize, -1).reshape(
-                B, (divider - 1) * psize, embed_dim)
+            'fg': prompts[:, :G] + fg_token,
+            'bg': prompts[:, G:] + bg_token.unsqueeze(2).expand(-1, -1, G, -1).reshape(
+                B, (divider - 1) * G, embed_dim)
         }
 
         x = self.patch_embed(x)  # [B, N ,C]

@@ -33,8 +33,7 @@ Final directory structure (only display used directories and files):
 * Download [Training/Validation data (2G, tarball)](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/VOCtrainval_11-May-2012.tar), and extract `VOCtrainval_11-May-2012.tar` to `./data/`
 * Download SegmentationClassAug (34M, tarball, [GoogleDrive](https://drive.google.com/file/d/1cdBd-Yg6doY1gj_LxttWm6V9ZoPJCLSP/view?usp=sharing) or [BaiduDrive](https://pan.baidu.com/s/169SnDvx9dnfldIUbnouQwA) Code: FPTr), and extract to `./data/VOCdevkit/VOC2012/`. This is an extended annotation set from [SBD](http://home.bharathh.info/pubs/codes/SBD/download.html).
 * Precomputed cross-entropy weights (only used for training)
-  * Option 1: Download from [BaiduDrive](https://pan.baidu.com/s/169SnDvx9dnfldIUbnouQwA) Code: FPTr, and extract `pascal_weights.tar` to `./data/VOCdevkit/VOC2012/`. Rename the directory name to `weights`.
-  * Option 2: Generate from datasets:
+  * Option 1: Generate from datasets:
   
     ```bash
     # Dry run to ensure the output path are correct.
@@ -42,6 +41,7 @@ Final directory structure (only display used directories and files):
     # Then generate and save to disk.
     cuda 0 python tools.py precompute_loss_weights with dataset=PASCAL
     ```
+  * Option 2: Download from [BaiduDrive](https://pan.baidu.com/s/169SnDvx9dnfldIUbnouQwA) Code: FPTr, and extract `pascal_weights.tar` to `./data/VOCdevkit/VOC2012/`. Rename the directory name to `weights`. (Try Option 1 if you encounter zlib error.)
 
 ### COCO-20i
 
@@ -55,9 +55,9 @@ Final directory structure (only display used directories and files):
   ```
 
 * Precompute cross-entropy weights (only used for training)
-  * Option 1: Download from [BaiduDrive](https://pan.baidu.com/s/169SnDvx9dnfldIUbnouQwA) Code: FPTr, and extract `coco_weights.tar` to `./data/COCO/`. Rename the directory name to `weights`.
-  * Option 2: Generate from datasets:
+  * Option 1: Generate from datasets:
 
     ```bash
     cuda 0 python tools.py precompute_loss_weights with dataset=COCO save_byte=True
     ```
+  * Option 2: Download from [BaiduDrive](https://pan.baidu.com/s/169SnDvx9dnfldIUbnouQwA) Code: FPTr, and extract `coco_weights.tar` to `./data/COCO/`. Rename the directory name to `weights`. (Try Option 1 if you encounter zlib error.)
